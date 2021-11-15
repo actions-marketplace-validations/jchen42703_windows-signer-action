@@ -11,6 +11,7 @@ This action will sign a binary using an RSA 2048 x509 certification. It expects 
 - `DOMAIN` - Domain of signer
 
 If you want to test with a self signed certs you can generate some with:
+
 ```bash
 openssl req \
     -newkey rsa:2048 -nodes -keyout codesign.key \
@@ -24,7 +25,7 @@ export WINDOWS_KEY=$(codesign.key)
 
 ```
 - name: Sign Windows Binary
-      uses: jonfriesen/windows-signer-action@v1.0.0
+      uses: jchen42703/windows-signer-action@v0.0.1
       env:
         NAME: SignerName
         DOMAIN: https://SignerDomain.com
