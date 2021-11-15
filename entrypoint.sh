@@ -16,11 +16,14 @@ echo "${WINDOWS_KEY}" > /certs/codesign.key
 echo "--> signing binary"
 
 # create an array of timestamp servers...
-# SERVERLIST=(http://timestamp.comodoca.com/authenticode http://timestamp.verisign.com/scripts/timestamp.dll http://timestamp.globalsign.com/scripts/timestamp.dll http://tsa.starfieldtech.com)
-SERVERLIST=(http://timestamp.comodoca.com/authenticode)
+# SERVERLIST=(timestamp.globalsign.com/?signature=sha2 http://timestamp.globalsign.com/scripts/timestamp.dll http://tsa.starfieldtech.com)
+# http://timestamp.digicert.com http://ts.ssl.com
+# http://timestamp.comodoca.com
+SERVERLIST=(http://sha256timestamp.ws.symantec.com/sha256/timestamp)
 
 # Sign file and if fails, rotate. If consumed all servers, and still fails, fail nonexclusively.
 for SERVER in ${SERVERLIST[@]}; do
+  echo "Timestamping with: ${SERVER}"
   SIGNED=$(/osslsigncode/osslsigncode-1.7.1/osslsigncode sign -certs /certs/bundle.crt -key /certs/codesign.key \
            -h sha256 -n ${NAME} -i ${DOMAIN} -t ${SERVER} -in ${BINARY} -out /signedbinary)
   if [ $? -eq 0 ]; then
