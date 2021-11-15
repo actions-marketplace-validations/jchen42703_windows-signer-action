@@ -1,7 +1,7 @@
 name: "Sign Windows Binary with Timestamp Server Rotation"
 author: "Joseph Chen"
 branding:
-  icon: "key"
+  icon: "lock"
   color: "blue"
 description: "Signs a Windows binary on Linux while rotating timestamp servers upon rate limit."
 runs:
