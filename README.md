@@ -1,5 +1,16 @@
 # Windows Signer Action
 
+Sometimes, when you sign a `.exe`, you'll get:
+
+```
+CURL failure: Couldn't resolve host name
+authenticode timestamping failed
+```
+
+This is the CA timestamping server rate limiting you. This action is a fork of https://github.com/jonfriesen/windows-signer-action that rotates the timestamp server upon a rate limit. Uses `osslsigncode` so you can run this action on linux.
+
+---
+
 This action will sign a binary using an RSA 2048 x509 certification. It expects a crt and key file to be stored in an environment variable along with name, domain, and binary path.
 
 ## Required Environment Variables
@@ -25,7 +36,7 @@ export WINDOWS_KEY=$(codesign.key)
 
 ```
 - name: Sign Windows Binary
-      uses: jchen42703/windows-signer-action@v0.0.1
+      uses: jchen42703/windows-signer-action@v0.0.2
       env:
         NAME: SignerName
         DOMAIN: https://SignerDomain.com

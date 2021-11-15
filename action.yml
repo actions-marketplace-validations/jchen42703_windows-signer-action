@@ -1,9 +1,9 @@
-name: 'Sign Windows Binary'
-author: 'Jon Friesen'
+name: "Sign Windows Binary with Timestamp Server Rotation"
+author: "Joseph Chen"
 branding:
-  icon: 'key'
-  color: 'blue'
-description: 'Signs a Windows binary'
+  icon: "key"
+  color: "blue"
+description: "Signs a Windows binary on Linux while rotating timestamp servers upon rate limit."
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: "docker"
+  image: "Dockerfile"
